@@ -1,0 +1,20 @@
+FROM ubuntu:18.04
+
+RUN apt update
+RUN apt-get update
+RUN apt-get install -y python3 python3-all-dev python-pip
+RUN pip install pipenv
+RUN apt-get update && apt-get install -y --no-install-recommends gcc
+
+RUN mkdir -p augnito/helloeks
+
+COPY . /augnito/helloeks/
+
+# Configure access to port 80
+RUN apt install authbind
+RUN touch /etc/authbind/byport/80
+RUN chmod 777 /etc/authbind/byport/80
+
+CMD ['sh' , 'augnito/helloeks/helloeks.sh'] 
+
+

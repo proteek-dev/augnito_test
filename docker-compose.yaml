@@ -1,0 +1,7 @@
+version: '1'
+
+services:
+    helloeks:
+        images: 'helloeks:0.1'
+        ports:
+            - '80:80'
